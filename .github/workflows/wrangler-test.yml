@@ -13,12 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: npm install npm
-      run: |
-        npm install
-        npm install -g npm@8.1.4
-        npm audit fix
-
     - name: Wrangler Install
       run: npm i @cloudflare/wrangler -g
       
