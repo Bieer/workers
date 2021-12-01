@@ -1,0 +1,30 @@
+name: Wrangler Test NPM
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: npm install npm
+      run: |
+        npm install
+        npm install -g npm@8.1.4
+        npm audit fix
+
+    - name: Wrangler Install
+      run: npm i @cloudflare/wrangler -g
+      
+    - name: Wrangler Login
+      run: wrangler login
+      
+    - name: First Jobs
+      run: wrangler generate my-app https://github.com/cloudflare/worker-template
+
